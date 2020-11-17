@@ -23,6 +23,8 @@ class User implements UserInterface, \Serializable, EquatableInterface
      */
     private $id;
 
+    
+
     /**
      * @ORM\Column(type="string", length=180, unique=true)  
      */
@@ -93,6 +95,7 @@ class User implements UserInterface, \Serializable, EquatableInterface
     {
         return $this->id;
     }
+
 
     public function getEmail(): ?string
     {

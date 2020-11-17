@@ -12,8 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 
@@ -87,30 +89,51 @@ class EquipoController extends AbstractController
         $form = $this->createFormBuilder($equipo)
         ->add('Nombre', TextType::class)
         ->add('director', TextType::class)
-        ->add('miembros', TextareaType::class)
-        /**->add('logo', FileType::class)**/
+        //->add('foto', FileType::class, array('data_class'=>null, 'label'=>'seleciona una imagen', 'required'=>false ))
         ->add('editar', SubmitType::class,array('label'=>'editar'))
           ->getForm();
   
         $form->handleRequest($request);
   
         if($form->isSubmitted() && $form->isValid()) {
+            /*$brochureFile = $form->get('foto')->getData();
+            if ($brochureFile) {
+              $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+              // this is needed to safely include the file name as part of the URL
+              $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+              $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
   
+              // Move the file to the directory where brochures are stored
+              try {
+                  $brochureFile->move(
+                      $this->getParameter('brochures_directory'),
+                      $newFilename
+                  );
+              } catch (FileException $e) {
+                  // ... handle exception if something happens during file upload
+              }
+  
+              // updates the 'brochureFilename' property to store the PDF file name
+              // instead of its contents
+              $equipo->setFoto($newFilename);
+          }*/
+  
+          // ... persist the $product variable or any other work
           $entityManager = $this->getDoctrine()->getManager();
           $entityManager->flush();
   
           return $this->redirectToRoute('equipo');
         }
   
-        return $this->render('equipo/edit.html.twig', array(
+        return $this->render('equipo/edit.html.twig',[
           'form' => $form->createView()
-        ));
+        ]);
     }
 
     /**
      * @Route("/delete{id}", name="equipo_delete", methods={"DELETE"})
      */
-    public function delete($id)
+    /**public function delete($id)
     {
         
             $entityManager = $this->getDoctrine()->getManager();
@@ -127,5 +150,5 @@ class EquipoController extends AbstractController
         
 
         return $this->redirectToRoute('/mi_equipo');
-    }
+    }*/
 }

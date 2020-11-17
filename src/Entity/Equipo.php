@@ -32,6 +32,11 @@ class Equipo
     private $nombre;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $foto;
+
+    /**
      * @ORM\Column(type="string", length=30)
      */
     private $director;
@@ -41,20 +46,7 @@ class Equipo
      */
     private $miembros = [];
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $competicionesapuntadas;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $competicionesganadas;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $partidos;
 
     public function getId(): ?int
     {
@@ -69,6 +61,18 @@ class Equipo
     public function setNombre(string $nombre): self
     {
         $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    public function getFoto(): ?string
+    {
+        return $this->foto;
+    }
+
+    public function setFoto(string $foto): self
+    {
+        $this->foto = $foto;
 
         return $this;
     }
@@ -97,40 +101,6 @@ class Equipo
         return $this;
     }
 
-    public function getCompeticionesapuntadas(): ?int
-    {
-        return $this->competicionesapuntadas;
-    }
-
-    public function setCompeticionesapuntadas(?int $competicionesapuntadas): self
-    {
-        $this->competicionesapuntadas = $competicionesapuntadas;
-
-        return $this;
-    }
-
-    public function setCompeticionesganadas(?int $competicionesganadas): self
-    {
-        $this->competidionesganadas = $competicionesganadas;
-
-        return $this;
-    }
-
-    public function setPartidos(?int $partidos): self
-    {
-        $this->partidos = $partidos;
-
-        return $this;
-    }
-
-    public function getCompeticionesganadas(): ?int
-    {
-        return $this->competicionesganadas;
-    }
-
-    public function getPartidos(): ?int
-    {
-        return $this->partidos;
-    }
+   
 }
 

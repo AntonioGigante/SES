@@ -10,6 +10,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+
+
 class RegisterController extends AbstractController
 {
     private $passwordEncoder;
@@ -30,6 +33,7 @@ class RegisterController extends AbstractController
         // 2) Manejamos el envío (sólo pasará con POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+          
             // 3) Codificamos el password (también se puede hacer a través de un Doctrine listener)
             $user->setPassword(
                 $passwordEncoder->encodePassword(

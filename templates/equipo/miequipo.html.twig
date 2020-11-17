@@ -23,6 +23,7 @@
     {% if equipos  %}
         {% for equipo in equipos %}
         <tr>
+          {#td>{{equipo.foto}}</td>#}
           <td>><a href="{{path('equipo_show', {'nombre': equipo.nombre})}}">{{equipo.nombre}}</a></td>
           <td>{{equipo.director}}</td>
           <td><a class="btn btn-lg btn-primary" type="submit" href="{{path('equipo_edit', {'id': equipo.id})}}">Editar</a></td>
