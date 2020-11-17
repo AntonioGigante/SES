@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipo index{% endblock %}
+
+{% block body %}
+    <h1>Equipo index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Director</th>
+                <th>Miembros</th>
+                <th>Competicionesapuntadas</th>
+                <th>Competicionesganadas</th>
+                <th>Partidos</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for equipo in equipos %}
+            <tr>
+                <td>{{ equipo.id }}</td>
+                <td>{{ equipo.Nombre }}</td>
+                <td>{{ equipo.director }}</td>
+                <td>{{ equipo.miembros ? equipo.miembros|join(', ') : '' }}</td>
+                <td>{{ equipo.competicionesapuntadas }}</td>
+                <td>{{ equipo.competicionesganadas }}</td>
+                <td>{{ equipo.partidos }}</td>
+                <td>
+                    <a href="{{ path('equipo_show', {'id': equipo.id}) }}">show</a>
+                    <a href="{{ path('equipo_edit', {'id': equipo.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('equipo_new') }}">Create new</a>
+{% endblock %}

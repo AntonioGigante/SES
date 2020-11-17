@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SES{% endblock %}
+
+{% block body %}
+<h4>Campeonatos</h4>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-info">
+            <th scope="col">CAMPEONATO</th>
+            <th scope="col">JUEGO</th>
+            <th scope="col">INFO</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    {% if campeonatos %}
+        {% for campeonato in campeonatos %}
+            <tr>
+                <td>{{campeonato.campeonatoNombre}}</td>
+                <td>{{campeonato.juego}}</td>
+                <td><a href="{{path('campeonato_info', {'campeonatoNombre': campeonato.campeonatoNombre})}}">Info.</a></td>
+                <td><a class="bhtn btn-lg btn-primary" href="{{path('inscripcionCampeonato')}}">Inscribirse.</a></td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <p>No hay competiciones ahora</P>
+    {% endif %}
+</table>
+
+<br><br>
+
+    <a class="bhtn btn-lg btn-primary" tyoe="submit" href="{{path('nuveoCampeonato')}}">Crear Campeonato</a>
+{% endblock %}

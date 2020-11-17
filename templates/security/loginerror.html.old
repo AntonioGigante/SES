@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login Error{% endblock %}
+
+{% block body %}
+    <h1>error login</h1>
+{% endblock %}

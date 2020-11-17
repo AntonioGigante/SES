@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipos_SES{% endblock %}
+
+{% block body %}
+<div>
+<table class="table table-hover">
+<div><h4>EQUIPOS</h4>
+  <thead>
+    <tr>
+      <th scope="col">Nombne</th>
+      <th scope="col">Director</th>
+      <th scope="col"></th>
+      {#<<th scome="col">Miembros</th>
+      <th scome="col">Competiciones Inscrito</th>
+      <th scope="col">Competiciones Ganadas</th>
+      <th scope="col">Partidos disputados</th>#}
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr class="table-info">
+    {% if equipos  %}
+        {% for equipo in equipos %}
+        <tr>
+          <td>><a href="{{path('equipo_show', {'nombre': equipo.nombre})}}">{{equipo.nombre}}</a></td>
+          <td>{{equipo.director}}</td>
+          <td><a class="btn btn-lg btn-primary" type="submit" href="{{path('equipo_edit', {'id': equipo.id})}}">Editar</a></td>
+          {#<td>{{equipo.miembros}}</td>Error array to string conversion
+          <td>{{equipo.competicionesapuntadas}}</td>
+          <td>{{equipo.competicionesganadas}}</td>#}
+        </tr>
+        {% endfor %}
+    {% else %}
+      <td>no data</td>
+      <td>no data</td>
+    {% endif %}
+    </tr>
+  </tbody>
+</table> 
+<table class="table table-hover">
+{#<div><h4>Stats</h4>
+  <thead>
+    <tr>
+     <th scope="col">rating</th>
+      <th scope="col">campeontatos apuntado</th>
+      <th scope="col">campeonatos ganados</th>
+      <th scope="col">victorias</th>
+      <th scope="col">sanciones</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr class="table-info">
+        <th scope="row">Info</th>
+    {% if equipos  %}
+        {% for equipo in equipos %}
+      <td>{{rating}}</td>
+      <td>{{campeonatosapuntado}}</td>
+      <td>{{campeonatosganados}}</td>
+      <td>{{victorias}}</td>
+      <td>{{sanciones}}</td>
+        {% endfor %}
+    {% else %}
+      <td>no datat</td>
+      <td>no data</td>
+      <td>no data</td>
+      <td>no data</td>
+    {% endif %}#}
+    </tr>
+  </tbody>
+</table> 
+
+<a class="btn btn-lg btn-primary" type="submit" href="{{ path('equipo_new') }}">Crear Equipo</a>
+
+{#<a class="btn btn-lg btn-primary" type="submit" href="{{ path('equipo_delete') }}">Borrar</a>#}
+    
+<div>
+{% endblock %}

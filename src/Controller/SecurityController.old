@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Controller;
+
+use App\Form\LoginType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+class SecurityController extends AbstractController
+{
+    /**
+     * @Route("/login", name="login", methods={"GET", "POST"})
+     */
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+        $form = $this->createForm(LoginType::class);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+            'form'  => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/login-error", name="forgot_password")
+     */
+    public function login_error(){
+        return $this->render('security/loginerror.html.twig');
+    }
+    
+    /**
+     * @Route("/login_check", name="login_check")
+     */
+    public function loginCheckAction()
+    {
+        // este controller no se ejecutará,
+        // ya que la route se maneja por el sistema de seguridad
+    }
+
+    
+}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Campeonato{% endblock %}
+
+{% block body %}
+    <h1>Crear Campeonato</h1>
+
+    {{ include('campeonatos/_form.html.twig') }}
+
+    <a href="{{ path('campeonatos_index') }}">back to list</a>
+{% endblock %}

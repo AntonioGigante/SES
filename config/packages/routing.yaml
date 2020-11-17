@@ -1,0 +1,8 @@
+framework:
+    router:
+        utf8: true
+#login:
+#    pattern:   /login
+#    defaults:  { _controller: App:SecurityController:login }
+#login_check:
+#    pattern:   /login_check

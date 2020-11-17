@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SES-Register{% endblock %}
+
+{% block body %}
+<fieldset>
+    <legend>SES-Login</legend>
+    
+{{ form_start(form) }}
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{ form_row(form.username) }}</label>
+    </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{ form_row(form.email) }}</label>
+    </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{ form_row(form.plainPassword.first) }}</labeL>
+    </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">{{ form_row(form.plainPassword.second) }}</label>
+    </div>
+{{ form_end(form) }}
+</fieldset>
+{% endblock %}

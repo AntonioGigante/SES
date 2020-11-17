@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Campeonatos{% endblock %}
+
+{% block body %}
+    <h1>Campeonatos</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ campeonato.id }}</td>
+            </tr>
+            <tr>
+                <th>Campeonato</th>
+                <td>{{ campeonato.campeonato }}</td>
+            </tr>
+            <tr>
+                <th>Juego</th>
+                <td>{{ campeonato.juego }}</td>
+            </tr>
+            <tr>
+                <th>Pruebas</th>
+                <td>{{ campeonato.pruebas }}</td>
+            </tr>
+            <tr>
+                <th>Participantes</th>
+                <td>{{ campeonato.participantes }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('campeonatos_index') }}">back to list</a>
+
+    <a href="{{ path('campeonatos_edit', {'id': campeonato.id}) }}">edit</a>
+
+    {{ include('campeonatos/_delete_form.html.twig') }}
+{% endblock %}

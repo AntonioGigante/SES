@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Campeonatos{% endblock %}
+
+{% block body %}
+    <h1>Edit Campeonatos</h1>
+
+    {{ include('campeonatos/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('campeonatos_index') }}">back to list</a>
+
+    {{ include('campeonatos/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SES-Login{% endblock %}
+
+{% block body %}
+    <form>
+  <fieldset>
+    <legend>Nuevo Equipo</legend>
+    
+    <div class="form-group">
+      <label for="exampleInputEmail1">Director</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="introduce responsable del equipo">
+    </div>
+    
+    
+    <div class="form-group">
+      <label for="exampleTextarea">Miembros</label>
+      <input class="form-control" id="exampleTextarea" placeholder="inserta como mínimo 5 miembros del quipo"></input>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputFile">Logo</label>
+      <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+    </div>
+    
+    <fieldset class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
+{% endblock %}

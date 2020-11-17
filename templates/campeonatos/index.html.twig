@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Campeonatos index{% endblock %}
+
+{% block body %}
+    <h1>Campeonatos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Campeonato</th>
+                <th>Juego</th>
+                <th>Pruebas</th>
+                <th>Participantes</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for campeonato in campeonatos %}
+            <tr>
+                <td>{{ campeonato.id }}</td>
+                <td>{{ campeonato.campeonato }}</td>
+                <td>{{ campeonato.juego }}</td>
+                <td>{{ campeonato.pruebas }}</td>
+                <td>{{ campeonato.participantes }}</td>
+                <td>
+                    <a href="{{ path('campeonatos_show', {'id': campeonato.id}) }}">show</a>
+                    <a href="{{ path('campeonatos_edit', {'id': campeonato.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('campeonatos_new') }}">Create new</a>
+{% endblock %}
