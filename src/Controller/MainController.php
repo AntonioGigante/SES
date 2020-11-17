@@ -16,12 +16,7 @@ class MainController extends AbstractController{
          * @Route("/", name="home");
          * @Method("{GET}")
          */
-        
-        /**
-         * index
-         *
-         * @return void
-         */
+
         public function index(){
           $campeonatosRepository = $this->getDoctrine()
           ->getManager()
@@ -33,12 +28,6 @@ class MainController extends AbstractController{
         /**
          * @Route("/nuevo_campeonato", name="nuveoCampeonato", methods={"GET", "POST"})
          * @IsGranted("IS_AUTHENTICATED_FULLY")
-         */        
-        /**
-         * crearCampeonato
-         *
-         * @param  mixed $request
-         * @return Response
          */
         public function crearCampeonato(Request $request): Response
         {
@@ -63,12 +52,6 @@ class MainController extends AbstractController{
 
         /**
          * @Route("/campeonato_info/{campeonatoNombre}", name="campeonato_info", methods={"GET"})
-         */        
-        /**
-         * campeonatoInfo
-         *
-         * @param  mixed $campeonatoNombre
-         * @return void
          */
         public function campeonatoInfo(Campeonato $campeonatoNombre)
         {
@@ -84,13 +67,7 @@ class MainController extends AbstractController{
          * @Route("/inscripcion", name="inscripcionCampeonato", methods={"GET", "POST"})
          * @IsGranted("IS_AUTHENTICATED_FULLY")
          */
-        
-        /**
-         * campeonatoInscripcion
-         *
-         * @param  mixed $campeonato
-         * @return void
-         */
+
         public function campeonatoInscripcion(Participacion $campeonato)
         {
           $user = $this->getUser();

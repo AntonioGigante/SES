@@ -13,26 +13,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RegisterController extends AbstractController
 {
     private $passwordEncoder;
-    
-    /**
-     * __construct
-     *
-     * @param  mixed $passwordEncoder
-     * @return void
-     */
+
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {      
         $this->passwordEncoder = $passwordEncoder;        
     }
     /**
      * @Route("/register", name="user_registration")
-     */    
-    /**
-     * registerAction
-     *
-     * @param  mixed $request
-     * @param  mixed $passwordEncoder
-     * @return void
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {

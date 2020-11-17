@@ -17,9 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
 
-/**
- * EquipoController
- */
 class EquipoController extends AbstractController
 {
 
@@ -27,13 +24,7 @@ class EquipoController extends AbstractController
      * @Route("/equipos", name="equipo")
      * @Method("{GET}")
      */
-    
-    /**
-     * index
-     *
-     * @param  mixed $equipoRepository
-     * @return Response
-     */
+
     public function index(EquipoRepository $equipoRepository): Response
     {
         
@@ -45,12 +36,6 @@ class EquipoController extends AbstractController
     /**
      * @Route("/new", name="equipo_new", methods={"GET","POST"})
      * @IsGranted("IS_AUTHENTICATED_FULLY")
-     */    
-    /**
-     * create
-     *
-     * @param  mixed $request
-     * @return Response
      */
     public function create(Request $request): Response
     {
@@ -78,12 +63,6 @@ class EquipoController extends AbstractController
 
     /**
      * @Route("/equipos/{nombre}", name="equipo_show")
-     */    
-    /**
-     * show
-     *
-     * @param  mixed $nombre
-     * @return void
      */
     public function show($nombre)
     {
@@ -98,13 +77,6 @@ class EquipoController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="equipo_edit", methods={"GET","POST"})
-     */    
-    /**
-     * edit
-     *
-     * @param  mixed $request
-     * @param  mixed $id
-     * @return void
      */
     public function edit(Request $request, $id)
     {
@@ -137,12 +109,6 @@ class EquipoController extends AbstractController
 
     /**
      * @Route("/delete{id}", name="equipo_delete", methods={"DELETE"})
-     */    
-    /**
-     * delete
-     *
-     * @param  mixed $id
-     * @return void
      */
     public function delete($id)
     {

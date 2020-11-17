@@ -17,12 +17,6 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/", name="user_index", methods={"GET"})
-     */    
-    /**
-     * index
-     *
-     * @param  mixed $userRepository
-     * @return Response
      */
     public function index(UserRepository $userRepository): Response
     {
@@ -33,12 +27,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
-     */    
-    /**
-     * new
-     *
-     * @param  mixed $request
-     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -62,12 +50,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
-     */    
-    /**
-     * show
-     *
-     * @param  mixed $user
-     * @return Response
      */
     public function show(User $user): Response
     {
@@ -78,13 +60,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
-     */    
-    /**
-     * edit
-     *
-     * @param  mixed $request
-     * @param  mixed $user
-     * @return Response
      */
     public function edit(Request $request, User $user): Response
     {
@@ -105,13 +80,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_delete", methods={"DELETE"})
-     */    
-    /**
-     * delete
-     *
-     * @param  mixed $request
-     * @param  mixed $user
-     * @return Response
      */
     public function delete(Request $request, User $user): Response
     {

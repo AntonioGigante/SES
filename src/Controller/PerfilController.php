@@ -13,11 +13,6 @@ class PerfilController extends AbstractController
      * @Route("/perfil", name="perfil")
      * @Method("{GET}")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
-     */    
-    /**
-     * perfilPage
-     *
-     * @return void
      */
     public function perfilPage()
     {
