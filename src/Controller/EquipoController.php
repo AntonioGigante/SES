@@ -23,10 +23,16 @@ class EquipoController extends AbstractController
 {
 
     /**
+     * index
+     *
+     * @param  mixed $equipoRepository
+     * @return Response
+     * 
      * @Route("/equipos", name="equipo")
      * @Method("{GET}")
      */
-
+    
+  
     public function index(EquipoRepository $equipoRepository): Response
     {
         
@@ -36,9 +42,15 @@ class EquipoController extends AbstractController
     }
 
     /**
+     * create
+     *
+     * @param  mixed $request
+     * @return Response
+     * 
      * @Route("/new", name="equipo_new", methods={"GET","POST"})
      * @IsGranted("IS_AUTHENTICATED_FULLY")
-     */
+     */    
+
     public function create(Request $request): Response
     {
         $equipo = new Equipo();
@@ -64,8 +76,14 @@ class EquipoController extends AbstractController
     }
 
     /**
+     * show
+     *
+     * @param  mixed $nombre
+     * @return void
+     * 
      * @Route("/equipos/{nombre}", name="equipo_show")
-     */
+     */ 
+    
     public function show($nombre)
     {
         
@@ -78,8 +96,15 @@ class EquipoController extends AbstractController
     }
 
     /**
+     * 
+     * edit
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
+     * 
      * @Route("/edit/{id}", name="equipo_edit", methods={"GET","POST"})
-     */
+     */    
     public function edit(Request $request, $id)
     {
 

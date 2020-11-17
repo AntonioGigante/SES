@@ -78,13 +78,13 @@ class MainController extends AbstractController{
         }
 
         /**
-         * @Route("/inscripcion", name="inscripcionCampeonato", methods={"GET", "POST"})
-         * @IsGranted("IS_AUTHENTICATED_FULLY")
-         * 
          * campeonatoInscripcion
          *
          * @param  mixed $campeonato
          * @return void
+         * 
+         * @Route("/inscripcion", name="inscripcionCampeonato", methods={"GET", "POST"})
+         * @IsGranted("IS_AUTHENTICATED_FULLY")
          */
         
        
