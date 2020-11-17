@@ -13,10 +13,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class MainController extends AbstractController{
         /**
+         * index
+         *
+         * @return void
+         * 
          * @Route("/", name="home");
          * @Method("{GET}")
-         */
-
+         */        
         public function index(){
           $campeonatosRepository = $this->getDoctrine()
           ->getManager()
@@ -26,9 +29,15 @@ class MainController extends AbstractController{
         }
 
         /**
+         * crearCampeonato
+         *
+         * @param  mixed $request
+         * @return Response
+         * 
          * @Route("/nuevo_campeonato", name="nuveoCampeonato", methods={"GET", "POST"})
          * @IsGranted("IS_AUTHENTICATED_FULLY")
-         */
+         */        
+        
         public function crearCampeonato(Request $request): Response
         {
           $campeonato = new Campeonato();
@@ -51,8 +60,13 @@ class MainController extends AbstractController{
         }
 
         /**
+         * campeonatoInfo
+         *
+         * @param  mixed $campeonatoNombre
+         * @return void
+         * 
          * @Route("/campeonato_info/{campeonatoNombre}", name="campeonato_info", methods={"GET"})
-         */
+         */   
         public function campeonatoInfo(Campeonato $campeonatoNombre)
         {
           
@@ -66,8 +80,14 @@ class MainController extends AbstractController{
         /**
          * @Route("/inscripcion", name="inscripcionCampeonato", methods={"GET", "POST"})
          * @IsGranted("IS_AUTHENTICATED_FULLY")
+         * 
+         * campeonatoInscripcion
+         *
+         * @param  mixed $campeonato
+         * @return void
          */
-
+        
+       
         public function campeonatoInscripcion(Participacion $campeonato)
         {
           $user = $this->getUser();
