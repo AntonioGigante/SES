@@ -16,8 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * index
+     *
+     * @param  mixed $userRepository
+     * @return Response
+     * 
      * @Route("/", name="user_index", methods={"GET"})
-     */
+     */ 
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
@@ -26,8 +31,13 @@ class UserController extends AbstractController
     }
 
     /**
+     * new
+     *
+     * @param  mixed $request
+     * @return Response
+     * 
      * @Route("/new", name="user_new", methods={"GET","POST"})
-     */
+     */  
     public function new(Request $request): Response
     {
         $user = new User();

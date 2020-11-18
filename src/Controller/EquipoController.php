@@ -25,8 +25,10 @@ class EquipoController extends AbstractController
     /**
      * index
      *
-     * @param  mixed $equipoRepository
+     * @param  mixed $equipoRepository repositorio de equipo donde usa el metodo findAll()
      * @return Response
+     * 
+     * muestra todos los equipos de la tabla equipos en la base de datos
      * 
      * @Route("/equipos", name="equipo")
      * @Method("{GET}")
@@ -78,8 +80,10 @@ class EquipoController extends AbstractController
     /**
      * show
      *
-     * @param  mixed $nombre
+     * @param  mixed $nombre busca el equipo por el nombre 
      * @return void
+     * 
+     * al hacer click sobre el equipo redirige a otra pagina que muestra la informacion del equipo
      * 
      * @Route("/equipos/{nombre}", name="equipo_show")
      */ 
@@ -100,7 +104,12 @@ class EquipoController extends AbstractController
      * edit
      *
      * @param  mixed $request
-     * @param  mixed $id
+     * @param  mixed $id este parametro indica el id del equipo que queremos editar
+     * 
+     * $form crea el formulario en el cual editaremos el equipo
+     * 
+     * despues de enviar el formulario redirige a la lista de equipos.
+     * 
      * @return void
      * 
      * @Route("/edit/{id}", name="equipo_edit", methods={"GET","POST"})

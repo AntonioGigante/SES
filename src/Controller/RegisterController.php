@@ -22,8 +22,16 @@ class RegisterController extends AbstractController
         $this->passwordEncoder = $passwordEncoder;        
     }
     /**
+     * registerAction
+     * 
+     * formulario de registro y redirige a la pagina de perfil (no se loggea después del registro así que salta el formulario de login)
+     *
+     * @param  mixed $request
+     * @param  mixed $passwordEncoder codifica la contraseña
+     * @return void
+     *
      * @Route("/register", name="user_registration")
-     */
+     */ 
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         // 1) Construimos el formulario

@@ -16,14 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class CampeonatosController extends AbstractController
 {
     /**
-     * @Route("/", name="campeonatos_index", methods={"GET"})
-     */    
-    /**
      * index
-     *
      * @param  mixed $campeonatoRepository
      * @return Response
-     */
+     * 
+     * @Route("/", name="campeonatos_index", methods={"GET"})
+     */  
+    /// un comentario
     public function index(CampeonatoRepository $campeonatoRepository): Response
     {
         return $this->render('main/index.html.twig', [
@@ -32,14 +31,14 @@ class CampeonatosController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="campeonatos_new", methods={"GET","POST"})
-     */    
-    /**
      * new
-     *
      * @param  mixed $request
      * @return Response
-     */
+     *
+     * este metodo crea un nuevo campeonato 
+     * 
+     * @Route("/new", name="campeonatos_new", methods={"GET","POST"})
+     */    
     public function new(Request $request): Response
     {
         $campeonato = new Campeonato();
@@ -61,14 +60,13 @@ class CampeonatosController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="campeonatos_show", methods={"GET"})
-     */    
-    /**
      * show
      *
      * @param  mixed $campeonato
      * @return Response
-     */
+     * 
+     * @Route("/{id}", name="campeonatos_show", methods={"GET"})
+     */    
     public function show(Campeonato $campeonato): Response
     {
         return $this->render('campeonatos/show.html.twig', [
@@ -77,15 +75,14 @@ class CampeonatosController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="campeonatos_edit", methods={"GET","POST"})
-     */    
-    /**
      * edit
      *
      * @param  mixed $request
      * @param  mixed $campeonato
      * @return Response
-     */
+     * 
+     * @Route("/{id}/edit", name="campeonatos_edit", methods={"GET","POST"})
+     */  
     public function edit(Request $request, Campeonato $campeonato): Response
     {
         $form = $this->createForm(CampeonatoType::class, $campeonato);
@@ -104,15 +101,14 @@ class CampeonatosController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="campeonatos_delete", methods={"DELETE"})
-     */    
-    /**
      * delete
      *
      * @param  mixed $request
      * @param  mixed $campeonato
      * @return Response
-     */
+     * 
+     * @Route("/{id}", name="campeonatos_delete", methods={"DELETE"})
+     */ 
     public function delete(Request $request, Campeonato $campeonato): Response
     {
         if ($this->isCsrfTokenValid('delete'.$campeonato->getId(), $request->request->get('_token'))) {

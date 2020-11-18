@@ -35,7 +35,7 @@ class MainController extends AbstractController{
          * @return Response
          * 
          * @Route("/nuevo_campeonato", name="nuveoCampeonato", methods={"GET", "POST"})
-         * @IsGranted("IS_AUTHENTICATED_FULLY")
+         * @IsGranted("IS_AUTHENTICATED_FULLY") el usuario tiene que estar loggeado para usaar este metodo
          */        
         
         public function crearCampeonato(Request $request): Response
