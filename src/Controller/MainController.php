@@ -90,9 +90,9 @@ class MainController extends AbstractController{
          */
         
        
-        public function campeonatoInscripcion(Participacion $campeonato)
+        public function campeonatoInscripcion()
         {
-          $user = $this->getUser();
+          /*$user = $this->getUser();
 
           $em = $this->getDoctrine()->getManager();
           $campeonatonombre = $em->getRepository(Campeonato::class)->find(Participacion::class, $campeonato);
@@ -104,6 +104,6 @@ class MainController extends AbstractController{
           $em->persist($participante);
           $em->flush();
 
-          return $this->redirectToRoute('home');
+          return $this->redirectToRoute('home');*/
         }
     }
