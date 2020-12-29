@@ -65,12 +65,12 @@ class MainController extends AbstractController{
          * @param  mixed $campeonatoNombre
          * @return void
          * 
-         * @Route("/campeonato_info/{campeonatoNombre}", name="campeonato_info", methods={"GET"})
+         * @Route("/campeonato_info/{id}", name="campeonato_info", methods={"GET"})
          */   
-        public function campeonatoInfo(Campeonato $campeonatoNombre)
+        public function campeonatoInfo(Request $request, $id)
         {
           
-          $campeonato =  $this->getDoctrine()->getRepository(Campeonato::class)->find($campeonatoNombre);
+          $campeonato =  $this->getDoctrine()->getRepository(Campeonato::class)->find($id);
 
           return $this->render('campeonatos/show.html.twig', [
            'campeonato' => $campeonato

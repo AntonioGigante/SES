@@ -19,7 +19,7 @@
             <tr>
                 <td>{{campeonato.campeonatoNombre}}</td>
                 <td>{{campeonato.juego}}</td>
-                <td><a href="{{path('campeonato_info', {'campeonatoNombre': campeonato.campeonatoNombre})}}">Info.</a></td>
+                <td><a href="{{path('campeonato_info', {'id': campeonato.id})}}">Info.</a></td>
                 <td><a class="bhtn btn-lg btn-primary" href="{{path('inscripcionCampeonato', {'id': campeonato.id})}}">Inscribirse.</a></td>
             </tr>
         {% endfor %}
