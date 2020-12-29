@@ -83,19 +83,21 @@ class MainController extends AbstractController{
          * @param  mixed $campeonato
          * @return void
          * 
-         *
          * 
-         * @Route("/inscripcion", name="inscripcionCampeonato", methods={"GET", "POST"})
+         * 
+         * @Route("/inscripcion/{id}", name="inscripcionCampeonato", methods={"GET", "POST"})
          * @IsGranted("IS_AUTHENTICATED_FULLY")
          */
         
        
-        public function campeonatoInscripcion()
+        public function campeonatoInscripcion(Request $request, $id)
         {
-          /*$user = $this->getUser();
+          /*al inscribirse seañade una participacion en la tabla participaciones con el id de usuario que
+           se inscribe (usuario loggeado) y el id del campeonato al que se apunta*/
+          $user = $this->getUser();
 
           $em = $this->getDoctrine()->getManager();
-          $campeonatonombre = $em->getRepository(Campeonato::class)->find(Participacion::class, $campeonato);
+          $campeonatonombre = $em->getRepository(Campeonato::class)->find($id);
 
           $participante = new Participacion();
           $participante->setUser($user);
@@ -104,6 +106,6 @@ class MainController extends AbstractController{
           $em->persist($participante);
           $em->flush();
 
-          return $this->redirectToRoute('home');*/
+          return $this->redirectToRoute('home');
         }
     }
