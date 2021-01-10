@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <th>Campeonato</th>
-               {#<td>{{ campeonato.campeonato }}</td>#}
+               <td>{{ campeonato.campeonatoNombre }}</td>
             </tr>
             <tr>
                 <th>Juego</th>
@@ -25,7 +25,11 @@
             </tr>
             <tr>
                 <th>Participantes</th>
-                {#<td>{{ campeonato.participantes }}</td>#}
+                {% if participantes %}
+                    {% for participante in participantes %}
+                        <td>{{ participantes.user }}</td>
+                    {% endfor %}
+                {% endif %}
             </tr>
         </tbody>
     </table>

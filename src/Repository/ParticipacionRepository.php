@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Participacion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * @method Participantes|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,12 +13,12 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Participantes[]    findAll()
  * @method Participantes[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ParticipacionRepository extends ServiceEntityRepository
+class ParticipacionRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+   /* public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Participacion::class);
-    }
+    }*/
 
     // /**
     //  * @return Participantes[] Returns an array of Participantes objects
@@ -47,4 +48,19 @@ class ParticipacionRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /*public function findByCampeonato()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT IDENTITY(p.user) FROM App\Entity\Participacion AS p WHERE EXISTS 
+                (SELECT o.id FROM App\Entity\Campeonato AS o WHERE o.id = p.campeonato)'
+            )
+            ->getResult();
+
+            $dql = 'SELECT c FROM App\Entity\Campeonato c';
+        $query = $this->getEntityManager()->createQuery($dql);
+        return $query->execute();
+
+    }*/
 }

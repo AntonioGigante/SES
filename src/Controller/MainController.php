@@ -71,9 +71,18 @@ class MainController extends AbstractController{
         {
           
           $campeonato =  $this->getDoctrine()->getRepository(Campeonato::class)->find($id);
+          //encontrar participantes en el campeonato que el usuario clicka
+          //$participantes = $this->getDoctrine()->getRepository(Participacion::class)->findAll();
+          $em= $this->getDoctrine()->getManager();
+          $query =$this->getDoctrine()->getManager()
+          ->createQuery(
+              'SELECT IDENTITY(p.user) FROM App\Entity\Participacion AS p WHERE EXISTS 
+              (SELECT o.id FROM App\Entity\Campeonato AS o WHERE o.id = :id AND o.id = p.campeonato)'
+          )->setParameter('id', $campeonato);
+          $participantes = $query->getResult();
 
           return $this->render('campeonatos/show.html.twig', [
-           'campeonato' => $campeonato
+           'campeonato' => $campeonato, "participantes" => $participantes
         ]);
         }
 
