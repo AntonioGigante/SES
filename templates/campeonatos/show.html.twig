@@ -25,9 +25,15 @@
             </tr>
             <tr>
                 <th>Participantes</th>
-                {% if participantes %}
-                    {% for participante in participantes %}
-                        <td>{{ participantes.user }}</td>
+                {% if participaciones %}
+                    {% for participantes in participaciones %}
+                    {#{% if participaciones.user is defined and participaciones.user is not null%}
+                    {% for object campeonato %}
+                        {% for campeonato in object.participantes %}#}
+                            <ul>{{ participaciones.user }}</ul>
+                        {#{% endfor %}
+                        {% endfor %}
+                    {% endif %}#}
                     {% endfor %}
                 {% endif %}
             </tr>

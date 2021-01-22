@@ -82,7 +82,7 @@ class MainController extends AbstractController{
           $participantes = $query->getResult();
 
           return $this->render('campeonatos/show.html.twig', [
-           'campeonato' => $campeonato, "participantes" => $participantes
+           'campeonato' => $campeonato, "participaciones" => $participantes
         ]);
         }
 
