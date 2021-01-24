@@ -36,7 +36,34 @@ class PerfilController extends AbstractController
         return $this->render('perfil/perfil.html.twig', array('users' => array($user)));
     }
     
-        
+    /**
+     * miquipo
+     * informacion del equipo al que pertenece el usuario loggeado
+     * @return void
+     * 
+     * @Route("/miequipo", name="miequipo")
+     * @Method("{GET}")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     */ 
+    public function miquipo()
+    {
+        return $this->render('equipo/miequipo.html.twig');
+    }
+    
+    /**
+     * ajustes
+     * formulario para modificar informacion del usuario
+     * @return void
+     * 
+     * @Route("/ajsutes/{id}", name="ajustes", methods={"GET", "POST"})
+     * IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function ajustes(Request $request, $id)
+    {
+        $user = $this->getUser();
+
+        return $this->render('perfil/ajustes.html.twig', array('user' => $user));
+    }    
  
    
 }

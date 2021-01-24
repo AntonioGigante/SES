@@ -66,6 +66,14 @@
   </tbody>
 </table> 
 
+<a class="bhtn btn-lg btn-primary" type="submit" href="{{path('miequipo')}}">Mi Equipo</a>
+{% if users %}
+  {% for user in users %}
+    <a class="bhtn btn-lg btn-primary" type="submit" href="{{path('ajustes', {'id': user.id})}}">Editar perfil</a>
+  {% endfor %}
+{% endif %}
+
+
 {#<a class="btn btn-lg btn-primary" type="submit" href="{{ path('equipo_new') }}">Mi Equipo</a>
 {% if users  %}
   {% for user in users %}
