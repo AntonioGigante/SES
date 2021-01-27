@@ -60,9 +60,23 @@ class PerfilController extends AbstractController
      */
     public function ajustes(Request $request, $id)
     {
-        $user = $this->getUser();
+        $user = new User;
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $form = $this->createFormBuilder($user)
+            ->add("email", TextType::class)
+            ->add("username", TextType::class)
+            //->add("password", TextType::class)
+            ->getForm();
+        $form->handleRequest($request);
 
-        return $this->render('perfil/ajustes.html.twig', array('user' => $user));
+        if($form->isSubmitted() && $form->isValid()){
+            $entitymanager = $this->getDoctrine()->getManager();
+            $entitymanager->flush();
+
+            return $this->redirectToRoute('perfil');
+        }
+
+        return $this->render('perfil/ajustes.html.twig', ['user' => $user, 'form' => $form->createView()]);
     }    
  
    

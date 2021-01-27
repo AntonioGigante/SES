@@ -2,7 +2,9 @@
 {% block title %}ajustes{% endblock %}
 
 {% block body %}
-    <form method="post">
+<br><br>
+    {{ include('equipo/_form.html.twig', {'button_label': 'Confirmar ajustes'}) }}
+    {#<form method="post">
         <label for="inputEmail">Email</label><br>
         <input type="email" name="email" id="inputEmail" class="form-control" value="{{user.email}}"><br>
         <label for"inputUsername">Username</label>
@@ -12,6 +14,6 @@
     </form><br><br><br><br>
     
    <button class="btn btn-lg btn-primary" type="submit">
-        Conformar ajustes
-    </button>
+        Confirmar ajustes
+    </button>#}
 {% endblock %}
