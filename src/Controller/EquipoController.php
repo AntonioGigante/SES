@@ -55,14 +55,23 @@ class EquipoController extends AbstractController
 
     public function create(Request $request): Response
     {
+        $user = $this->getUser()->getUsername();
         $equipo = new Equipo();
         $form = $this->createForm(EquipoType::class, $equipo);
+
+        $form = $this->createFormBuilder($equipo)
+        ->add('Nombre', TextType::class)    
+        //->add('foto', FileType::class, array('data_class'=>null, 'label'=>'seleciona una imagen', 'required'=>false ))
+        ->add('editar', SubmitType::class,array('label'=>'editar'))
+          ->getForm();
         
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            
+            $equipo->setMiembros(array('null', null));
+            $equipo->setFoto('null', null);
+            $equipo->setDirector($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($equipo);
             $entityManager->flush();

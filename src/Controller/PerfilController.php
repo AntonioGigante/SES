@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Mime\Email;
 
 class PerfilController extends AbstractController
 {
@@ -41,13 +42,24 @@ class PerfilController extends AbstractController
      * informacion del equipo al que pertenece el usuario loggeado
      * @return void
      * 
-     * @Route("/miequipo", name="miequipo")
+     * @Route("/miequipo/{nombre}", name="miequipo")
      * @Method("{GET}")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */ 
-    public function miquipo()
+    public function miquipo($nombre)
     {
-        return $this->render('equipo/miequipo.html.twig');
+        //mostrar equipo del usuario logeado
+        $user = $this->getUser()->getUsername();
+        $em = $this->getDoctrine()->getManager()
+        ->createQuery(
+            'SELECT * FROM App\Entity\Equipos WHERE '
+        );
+        $equipo = $this->getDoctrine()->getRepository(Equipo::class)
+        ->find($nombre);
+
+        return $this->render('equipo/show.html.twig', [
+           'equipos' => $equipo
+        ]);
     }
     
     /**
@@ -63,7 +75,7 @@ class PerfilController extends AbstractController
         $user = new User;
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createFormBuilder($user)
-            ->add("email", TextType::class)
+            ->add("email", Email::class)
             ->add("username", TextType::class)
             //->add("password", TextType::class)
             ->getForm();
