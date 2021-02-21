@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EquipoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -41,10 +43,17 @@ class Equipo
      */
     private $director;
 
+    
+
     /**
-     * @ORM\Column(type="array")
+     * @ORM\OneToMany(targetEntity=Miembros::class, mappedBy="user")
      */
-    private $miembros = [];
+    private $integrantes;
+
+    public function __construct()
+    {
+        $this->integrantes = new ArrayCollection();
+    }
 
 
 
@@ -89,14 +98,35 @@ class Equipo
         return $this;
     }
 
-    public function getMiembros(): ?array
+ 
+
+    /**
+     * @return Collection|Miembros[]
+     */
+    public function getIntegrantes(): Collection
     {
-        return $this->miembros;
+        return $this->integrantes;
     }
 
-    public function setMiembros(array $miembros): self
+    public function addIntegrante(Miembros $integrante): self
     {
-        $this->miembros = $miembros;
+        if (!$this->integrantes->contains($integrante)) {
+            $this->integrantes[] = $integrante;
+            $integrante->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIntegrante(Miembros $integrante): self
+    {
+        if ($this->integrantes->contains($integrante)) {
+            $this->integrantes->removeElement($integrante);
+            // set the owning side to null (unless already changed)
+            if ($integrante->getUser() === $this) {
+                $integrante->setUser(null);
+            }
+        }
 
         return $this;
     }

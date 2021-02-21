@@ -85,6 +85,11 @@ class User implements UserInterface, \Serializable, EquatableInterface
      * @ORM\OneToMany(targetEntity="Participacion", mappedBy="user")
      */
     private $participaciones;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Miembros::class, inversedBy="equipo")
+     */
+    private $equipo;
     
    
     public function __construct() {
@@ -318,6 +323,18 @@ class User implements UserInterface, \Serializable, EquatableInterface
                 $participacione->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEquipo(): ?Miembros
+    {
+        return $this->equipo;
+    }
+
+    public function setEquipo(?Miembros $equipo): self
+    {
+        $this->equipo = $equipo;
 
         return $this;
     }

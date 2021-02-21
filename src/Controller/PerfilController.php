@@ -42,7 +42,7 @@ class PerfilController extends AbstractController
      * informacion del equipo al que pertenece el usuario loggeado
      * @return void
      * 
-     * @Route("/miequipo/{nombre}", name="miequipo")
+     * @Route("/miequipo/", name="miequipo")
      * @Method("{GET}")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */ 
@@ -50,18 +50,28 @@ class PerfilController extends AbstractController
     {
         //mostrar equipo del usuario logeado
         $user = $this->getUser()->getUsername();
-        $em = $this->getDoctrine()->getManager()
+        /*$em = $this->getDoctrine()->getManager()
         ->createQuery(
-            'SELECT * FROM App\Entity\Equipos WHERE '
+            'SELECT * FROM App\Entity\Equipos AS e WHERE e.director = $user'
         );
+        $equipo = $em->getResult();*/
         $equipo = $this->getDoctrine()->getRepository(Equipo::class)
         ->find($nombre);
-
-        return $this->render('equipo/show.html.twig', [
-           'equipos' => $equipo
+        
+        return $this->render('equipo/show.html.twig', ["equipos" => $equipo,
+        "users" => $user
         ]);
     }
     
+    /**
+     * @Route("/abandonarequipo/", name="abandonar")
+     * @Method("{GET}")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function abandonarequipo()
+    {
+        //elimina al usuario loggeado del equipo al que pertenece, si es el director asigna a uno de los miembros como director.
+    }
     /**
      * ajustes
      * formulario para modificar informacion del usuario
