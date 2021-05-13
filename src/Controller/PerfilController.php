@@ -7,12 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;     
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Mime\Email;
 
 class PerfilController extends AbstractController
 {
@@ -80,12 +77,12 @@ class PerfilController extends AbstractController
      * @Route("/ajsutes/{id}", name="ajustes", methods={"GET", "POST"})
      * IsGranted("IS_AUTHENTICATED_FULLY")
      */
-    public function ajustes(Request $request, $id)
+    public function ajustes(Request $request, $id): Response
     {
         $user = new User;
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createFormBuilder($user)
-            ->add("email", Email::class)
+            ->add("email", TextType::class)
             ->add("username", TextType::class)
             //->add("password", TextType::class)
             ->getForm();

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Equipo;
+use App\Entity\Miembros;
+use App\Entity\User;
 use App\Form\EquipoType;
 use App\Repository\EquipoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -68,8 +70,15 @@ class EquipoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //Añadir el equipo a la tabla de usuarios en el usuario que crea el equipo.
+            $em = $this->getDoctrine->getManager();
+            $query = $this->getDoctrine->getManager()
+            ->createQuery(
+            'SELECT IDENTITY (p.user) FROM App\eNTITY\User AS p WHERE EXISTs
+            (SELECT o.director FROM App\Entity\Equipo AS o WHERE o.director = p.user) p.equipo = o,nombre'); 
+            $teamUser = $query->getResult(); 
             
-            $equipo->setMiembros(array('null', null));
+            //set foto del equipo "null" y director del equipo "usuario loggeado". 
             $equipo->setFoto('null', null);
             $equipo->setDirector($user);
             $entityManager = $this->getDoctrine()->getManager();
@@ -194,4 +203,28 @@ class EquipoController extends AbstractController
 
         return $this->redirectToRoute('/mi_equipo');
     }*/
+
+    
+    /**
+     * @Route("/join/{id}", name="join", methods={"GET", "POST"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function join(Request $request, $id)
+    {
+        $user  = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $equiponombre = $em->getRepository(Equipo::class)->find($id);
+
+        $equipomiembro = new User();
+        $miembro = new Miembros();
+        $miembro->setUser($user);
+        $equipomiembro->setEquipo($equiponombre);
+
+        $em->persist($miembro);
+        $em->persist($equiponombre);
+        $em->flush();
+
+        return $this->redirectToRoute('perfil');
+    }
 }
