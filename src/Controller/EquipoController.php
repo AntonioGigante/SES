@@ -59,6 +59,8 @@ class EquipoController extends AbstractController
     {
         $user = $this->getUser()->getUsername();
         $equipo = new Equipo();
+        $userequipo = new User();
+        $usermiembro = new Miembros();
         $form = $this->createForm(EquipoType::class, $equipo);
 
         $form = $this->createFormBuilder($equipo)
@@ -70,21 +72,23 @@ class EquipoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //Añadir el equipo a la tabla de usuarios en el usuario que crea el equipo.
-            $em = $this->getDoctrine->getManager();
-            $query = $this->getDoctrine->getManager()
+            //Añadir id_usario a la tabla Miembros.            
+            //Añadir id_equipo a la tabla de usuarios en el usuario que crea el equipo.
+            $em = $this->getDoctrine()->getManager();
+            $query = $this->getDoctrine()->getManager()
             ->createQuery(
-            'SELECT IDENTITY (p.user) FROM App\eNTITY\User AS p WHERE EXISTs
-            (SELECT o.director FROM App\Entity\Equipo AS o WHERE o.director = p.user) p.equipo = o,nombre'); 
-            $teamUser = $query->getResult(); 
+            'SELECT (p.id) FROM App\Entity\Equipo AS p WHERE EXISTS
+            (SELECT o.username FROM App\Entity\User AS o WHERE o.username = p.director)'); 
+            $teamsuer = $query->getResult(); 
             
             //set foto del equipo "null" y director del equipo "usuario loggeado". 
             $equipo->setFoto('null', null);
             $equipo->setDirector($user);
+            $usermiembro->getEquipo($teamsuer);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($equipo);
+            $entityManager->persist($userequipo);
             $entityManager->flush();
-            
 
             return $this->redirectToRoute('equipo');
         }
