@@ -29,12 +29,14 @@
                 <td>{{equipo.competicionesganadas}}</td>
                 <td>{{equipo.partidos}}</td>#}
             </tr>
-            <p>falta añadir el resto de campos a la base de datos de (Equipos)</p>
+            <p>falta añadir el resto de campos a la tabla de (Equipos)</p>
         </tbody>
         {% endfor %}
     {% endif %}
     </tr>
     </table>
+
+    <a class="btn btn-lg btn-primary" type="submit"  href="{{ path('equipo') }}">back to list</a>
 
     {#<a href="{{ path('equipo_index') }}">back to list</a>
 
