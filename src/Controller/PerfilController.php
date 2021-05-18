@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;     
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -85,6 +86,7 @@ class PerfilController extends AbstractController
             ->add("email", TextType::class)
             ->add("username", TextType::class)
             //->add("password", TextType::class)
+            ->add("guardar", SubmitType::class,array('label'=>'Guardar cambios'))
             ->getForm();
         $form->handleRequest($request);
 

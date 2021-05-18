@@ -7,10 +7,12 @@
 <table class="table table-hover">
 <div><h4>EQUIPOS</h4>
   <thead>
-    <tr>
+    <tr class="table-info">
       <th scope="col">Nombne</th>
       <th scope="col">Director</th>
+      <th scope="col">INFO</th>
       <th scope="col"></th>
+      <th scope="col"/>
       {#<<th scome="col">Miembros</th>
       <th scome="col">Competiciones Inscrito</th>
       <th scope="col">Competiciones Ganadas</th>
@@ -24,8 +26,9 @@
         {% for equipo in equipos %}
         <tr>
           {#td>{{equipo.foto}}</td>#}
-          <td>><a href="{{path('equipo_show', {'nombre': equipo.nombre})}}">{{equipo.nombre}}</a></td>
+          <td>{{equipo.nombre}}</td>
           <td>{{equipo.director}}</td>
+          <td><a href="{{path('equipo_show', {'nombre': equipo.nombre})}}">info.</a></td>
           <td><a class="btn btn-lg btn-primary" href="{{path('join', {'id': equipo.id})}}">Unirse</a></td>
           <th scope="col"></th>
           {#<td>{{equipo.miembros}}</td>Error array to string conversion

@@ -6,7 +6,7 @@
 <table class="table table-hover">
     <h4>Equipo</h4>
  <thead>
-    <tr>
+    <tr class="table-info">
       <th scope="col">id</th>
       <th scope="col">Nombne</th>
       <th scope="col">Director</th>
@@ -16,19 +16,20 @@
       <th scope="col">Partidos disputados</th>
     </tr>
   </thead>
-   <tr class="table-info">
+   <tr>
     {% if equipos  %}
         {% for equipo in equipos %}
         <tbody>
             <tr>
-                <td>{{ equipo.id }}</td>
-                <td>{{ equipo.nombre }}</td>
-                <td>{{ equipo.director }}</td>
-                <td>{{ equipo.miembros ? equipo.miembros|join(', ') : '' }}</td>
-                <td>{{ equipo.competicionesapuntadas }}</td>
-                <td>{{ equipo.competicionesganadas }}</td>
-                <td>{{ equipo.partidos }}</td>
+                <td>{{equipo.id}}</td>
+                <td>{{equipo.nombre}}</td>
+                <td>{{equipo.director}}</td>
+                {#<td>{{equipo.miembros ? equipo.miembros|join(', ') : ''}}</td>
+                <td>{{equipo.competicionesapuntadas}}</td>
+                <td>{{equipo.competicionesganadas}}</td>
+                <td>{{equipo.partidos}}</td>#}
             </tr>
+            <p>falta añadir el resto de campos a la base de datos de (Equipos)</p>
         </tbody>
         {% endfor %}
     {% endif %}

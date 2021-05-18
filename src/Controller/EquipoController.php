@@ -59,14 +59,14 @@ class EquipoController extends AbstractController
     {
         $user = $this->getUser()->getUsername();
         $equipo = new Equipo();
-        $userequipo = new User();
-        $usermiembro = new Miembros();
+        //$userequipo = new User();
+        //$usermiembro = new Miembros();
         $form = $this->createForm(EquipoType::class, $equipo);
 
         $form = $this->createFormBuilder($equipo)
         ->add('Nombre', TextType::class)    
         //->add('foto', FileType::class, array('data_class'=>null, 'label'=>'seleciona una imagen', 'required'=>false ))
-        ->add('editar', SubmitType::class,array('label'=>'editar'))
+        ->add('create', SubmitType::class,array('label'=>'Crear Equipo'))
           ->getForm();
         
         $form->handleRequest($request);
@@ -74,20 +74,20 @@ class EquipoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //Añadir id_usario a la tabla Miembros.            
             //Añadir id_equipo a la tabla de usuarios en el usuario que crea el equipo.
-            $em = $this->getDoctrine()->getManager();
+            /*$em = $this->getDoctrine()->getManager();
             $query = $this->getDoctrine()->getManager()
             ->createQuery(
             'SELECT (p.id) FROM App\Entity\Equipo AS p WHERE EXISTS
             (SELECT o.username FROM App\Entity\User AS o WHERE o.username = p.director)'); 
-            $teamsuer = $query->getResult(); 
+            $teamsuer = $query->getResult();*/
             
             //set foto del equipo "null" y director del equipo "usuario loggeado". 
             $equipo->setFoto('null', null);
             $equipo->setDirector($user);
-            $usermiembro->getEquipo($teamsuer);
+            //$usermiembro->getEquipo($teamsuer);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($equipo);
-            $entityManager->persist($userequipo);
+            //$entityManager->persist($userequipo);
             $entityManager->flush();
 
             return $this->redirectToRoute('equipo');
@@ -114,11 +114,11 @@ class EquipoController extends AbstractController
     {
         
         $equipo = $this->getDoctrine()->getRepository(Equipo::class)
-        ->find($nombre);
+        ->findOneBy(array('nombre'=>$nombre));
 
-        return $this->render('equipo/show.html.twig', [
-           'equipos' => $equipo
-        ]);
+        return $this->render('equipo/show.html.twig', 
+           array('equipos' => array($equipo))
+        );
     }
 
     /**
