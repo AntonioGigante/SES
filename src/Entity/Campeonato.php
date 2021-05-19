@@ -47,6 +47,21 @@ class Campeonato
      * @ORM\OneToMany(targetEntity="Participacion", mappedBy="campeonato")
      */
     private $participantes;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechainicio;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $fechafin;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $admin;
     
     public function __construct() {
         $this->participantes = new \Doctrine\Common\Collections\ArrayCollection();
@@ -163,6 +178,42 @@ class Campeonato
                 $participante->setCampeonato(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFechainicio(): ?\DateTimeInterface
+    {
+        return $this->fechainicio;
+    }
+
+    public function setFechainicio(\DateTimeInterface $fechainicio): self
+    {
+        $this->fechainicio = $fechainicio;
+
+        return $this;
+    }
+
+    public function getFechafin(): ?\DateTimeInterface
+    {
+        return $this->fechafin;
+    }
+
+    public function setFechafin(\DateTimeInterface $fechafin): self
+    {
+        $this->fechafin = $fechafin;
+
+        return $this;
+    }
+
+    public function getAdmin(): ?string
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(string $admin): self
+    {
+        $this->admin = $admin;
 
         return $this;
     }

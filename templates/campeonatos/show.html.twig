@@ -3,7 +3,7 @@
 {% block title %}Campeonatos{% endblock %}
 
 {% block body %}
-    <h1>Campeonatos</h1>
+    <h1>{{campeonato.campeonatoNombre}}</h1>
 
     <table class="table">
         <tbody>
@@ -14,6 +14,18 @@
             <tr>
                 <th>Campeonato</th>
                <td>{{ campeonato.campeonatoNombre }}</td>
+            </tr>
+            <tr>
+                <th>Admin</th>
+               <td>{{ campeonato.admin }}</td>
+            </tr>
+            <tr>
+                <th>Fecha Inicio</th>
+                <td>{{campeonato.fechainicio|date('Y-m-d')}}</td>
+            </tr>
+            <tr>
+                <th>Fecha Fin</th>
+                <td>{{campeonato.fechafin|date('Y-m-d')}}</td>
             </tr>
             <tr>
                 <th>Juego</th>
@@ -29,9 +41,9 @@
                     {% for participantes in participaciones %}
                     {#{% if participaciones.user is defined and participaciones.user is not null%}
                     {% for object campeonato %}
-                        {% for campeonato in object.participantes %}#}
+                        {% for campeonato in object.participantes %}
                             <ul>{{ participaciones.user }}</ul>
-                        {#{% endfor %}
+                        {% endfor %}
                         {% endfor %}
                     {% endif %}#}
                     {% endfor %}
@@ -40,9 +52,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('campeonatos_index') }}">back to list</a>
+    <a class="btn btn-lg btn-primary" type="submit" href="{{ path('campeonatos_index') }}">back to list</a>
 
-    <a href="{{ path('campeonatos_edit', {'id': campeonato.id}) }}">edit</a>
+    <a class="btn btn-lg btn-primary" type="submit" href="{{ path('campeonatos_edit', {'id': campeonato.id}) }}">edit</a>
 
     {{ include('campeonatos/_delete_form.html.twig') }}
 {% endblock %}

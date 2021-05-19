@@ -40,12 +40,14 @@ class MainController extends AbstractController{
         
         public function crearCampeonato(Request $request): Response
         {
+          $user = $this->getUser()->getUsername();
           $campeonato = new Campeonato();
           $form = $this->createForm(CampeonatoType::class, $campeonato);
 
           $form->handleRequest($request);
 
           if($form-> isSubmitted() && $form->isValid()){
+            $campeonato->setAdmin($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($campeonato);
             $entityManager->flush();
