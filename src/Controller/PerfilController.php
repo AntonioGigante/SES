@@ -98,7 +98,24 @@ class PerfilController extends AbstractController
         }
 
         return $this->render('perfil/ajustes.html.twig', ['user' => $user, 'form' => $form->createView()]);
-    }    
- 
+    }  
+    /**
+     * @Route("/misCampeonatos/{director}", name="misCampeonatos", methods={"GET"})
+     *  IsGranted("IS_AUTENTICATED_FULLY")
+     */  
+    public function misCampeonatos(Request $request, $director)
+    {
+        $user = $this->getUser()->getUsername();
+        $campeonato = $this->getDoctrine()->getRepository(Campeonato::class)->findBy($director);
+        $em = $this->getDoctrine()->getManager();
+        $query = $this->getDoctrine()->getManager()
+        ->createQuery(
+            'SELECT p FROM App\Entity\Campeonato AS P WHERE EXISTS
+            (SELECT o.username FROM App\Entity\Users AS o WHERE p.director = o.username)'
+        )->setParameter('p.director', $campeonato)->setParameter('o.username', $user);
+        $misCampeonatos = $query->getResult();
+
+        return $this->render('perfil/misCampeonatos.html.twig', ['campeonato' => $misCampeonatos])
+    }
    
 }
