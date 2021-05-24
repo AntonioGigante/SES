@@ -9,7 +9,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Validator\Constraints\Date;
 
 class CampeonatoType extends AbstractType
 {
@@ -20,7 +19,7 @@ class CampeonatoType extends AbstractType
             //->add('creador_campeonato', TextType::class, ['help' => 'nombre del creador del campeonato'])
             ->add('descripcion', TextType::class)
             ->add('juego', TextType::class)
-            ->add('fecha_inicio', DateType::class, ['widget' => 'choice',])
+            ->add('fecha_inicio', DateType::class, ['widget' => 'choice'])
             ->add('fecha_fin', DateType::class, ['widget'=>'choice'])
             ->add('crearcampeonato', SubmitType::class, array('label'=>'crear campeonato'))
         ;
