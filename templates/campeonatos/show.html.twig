@@ -31,10 +31,7 @@
                 <th>Juego</th>
                 <td>{{ campeonato.juego }}</td>
             </tr>
-            <tr>
-                <th>Pruebas</th>
-                {#<td>{{ campeonato.pruebas }}</td>#}
-            </tr>
+            
             <tr>
                 <th>Participantes</th>
                 {% if participaciones %}
@@ -48,6 +45,14 @@
                     {% endif %}#}
                     {% endfor %}
                 {% endif %}
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <th>Pruebas</th>
+                {#<td>{{ campeonato.pruebas }}</td>#}
             </tr>
         </tbody>
     </table>
