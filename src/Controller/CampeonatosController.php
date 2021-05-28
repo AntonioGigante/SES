@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Campeonato;
+use App\Entity\Prueba;
 use App\Form\CampeonatoType;
+use App\Form\PruebaType;
 use App\Repository\CampeonatoRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -118,5 +121,32 @@ class CampeonatosController extends AbstractController
         }
 
         return $this->redirectToRoute('campeonatos_index');
+    }
+
+
+    /**
+     * @Route("/campeonatos/{id}", name="campeonatos_pruebas", methods={"GET","POST"})
+     * IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function campeonatopruebas(Request $request, $id): Response
+    {
+        $campeonato = new Campeonato;
+        $campeonato = $this->getDoctrine()->getRepository(Campeonato::class)->find($id);
+        $prueba = new Prueba();
+        $form = $this->createForm(PruebaType::class, $prueba);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($prueba);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home');
+        }
+        
+        return $this->redirectToRoute('campeonatos_index', ['prueba'=> $prueba, 'campeonato' => $campeonato, 
+        'form' => $form->createView()]);
     }
 }

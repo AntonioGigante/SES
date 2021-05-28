@@ -74,12 +74,12 @@ class EquipoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //Añadir id_usario a la tabla Miembros.            
             //Añadir id_equipo a la tabla de usuarios en el usuario que crea el equipo.
-            /*$em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
             $query = $this->getDoctrine()->getManager()
             ->createQuery(
             'SELECT (p.id) FROM App\Entity\Equipo AS p WHERE EXISTS
             (SELECT o.username FROM App\Entity\User AS o WHERE o.username = p.director)'); 
-            $teamsuer = $query->getResult();*/
+            $teamsuer = $query->getResult();
             
             //set foto del equipo "null" y director del equipo "usuario loggeado". 
             $equipo->setFoto('null', null);

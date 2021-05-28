@@ -112,8 +112,8 @@ class PerfilController extends AbstractController
         $query = $this->getDoctrine()->getManager()
         ->createQuery(
             'SELECT p FROM App\Entity\Campeonato AS p WHERE EXISTS
-            (SELECT o.username FROM App\Entity\User AS o WHERE p.admin = o.username)'
-            );
+            (SELECT o.username FROM App\Entity\User AS o WHERE p.admin = o.username AND o.username = :user)'
+            )->setParameter('user', $user);
         $campeonato = $query->getResult();
 
         return $this->render('perfil/misCampeonatos.html.twig', ['campeonatos' => $campeonato]);
