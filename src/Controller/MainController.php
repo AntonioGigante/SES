@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Campeonato;
 use App\Entity\Participacion;
+use App\Entity\User;
 use App\Form\CampeonatoType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;    
@@ -71,20 +72,21 @@ class MainController extends AbstractController{
          */   
         public function campeonatoInfo(Request $request, $id)
         {
-          
+          $user = $this->getDoctrine()->getRepository(User::class)->findAll();
           $campeonato =  $this->getDoctrine()->getRepository(Campeonato::class)->find($id);
           //encontrar participantes en el campeonato que el usuario clicka
           //$participantes = $this->getDoctrine()->getRepository(Participacion::class)->findAll();
           $em= $this->getDoctrine()->getManager();
           $query =$this->getDoctrine()->getManager()
           ->createQuery(
-              'SELECT IDENTITY(p.user) FROM App\Entity\Participacion AS p WHERE EXISTS 
+              'SELECT IDENTITY(p.user), u.username FROM App\Entity\Participacion AS p JOIN App\Entity\User AS u
+               WHERE p.user = u.id AND EXISTS 
               (SELECT o.id FROM App\Entity\Campeonato AS o WHERE o.id = :id AND o.id = p.campeonato)'
           )->setParameter('id', $campeonato);
           $participantes = $query->getResult();
 
           return $this->render('campeonatos/show.html.twig', [
-           'campeonato' => $campeonato, "participaciones" => $participantes
+           'campeonato' => $campeonato, "participaciones" => $participantes, 'users' => $user
         ]);
         }
 
