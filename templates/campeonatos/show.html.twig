@@ -36,9 +36,9 @@
                 <td>{{ campeonato.juego }}</td>
             </tr>
             
-            <tr>
+            {#<tr>
                 <th>Participantes</th>
-                {#{% if participaciones %}
+                {% if participaciones %}
                     {% for participantes in participaciones %}
                     {% if participaciones.user is defined and participaciones.user is not null%}
                     {% for object campeonato %}
@@ -48,18 +48,15 @@
                         {% endfor %}
                     {% endif %}
                     {% endfor %}
-                {% endif %}#}
-            </tr>
-        </tbody>
-    </table>
-    <table>
-        <tbody>
-            <tr>
+                {% endif %}
+            </tr>#}
+            {#<tr>
                 <th>Pruebas</th>
-                {#<td>{{ campeonato.pruebas }}</td>#}
-            </tr>
+                <td>{{ campeonato.pruebas }}</td>
+            </tr>#}
         </tbody>
     </table>
+    
 
     <a class="btn btn-lg btn-primary" type="submit" href="{{ path('campeonatos_index') }}">back to list</a>
     

@@ -1,12 +1,12 @@
-const users = document.getElementById('users');
+const campeonatos = document.getElementById('campeonatos');
 
-if (users) {
-    users.addEventListener('click', e => {
-    if (e.target.className === 'btn btn-lg btn-primary delete-user') {
-      if (confirm('Seguro que quieres borrar el usuario?')) {
+if (campeonatos) {
+    campeonatos.addEventListener('click', e => {
+    if (e.target.className === 'btn btn-lg btn-danger delete-campeonato') {
+      if (confirm('Seguro que quieres borrar el campeonato?')) {
         const id = e.target.getAttribute('data-id');
 
-        fetch(`/perfil/delete/${id}`, {
+        fetch(`/campeonato/delete/${id}`, {
           method: 'DELETE'
         }).then(res => window.location.reload());
       }

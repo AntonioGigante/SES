@@ -4,11 +4,13 @@
 
 {% block body %}
     <h4>Mis Campeonatos</h4>
-<table class="table table-hover">
+<table id="campeonatos" class="table table-hover">
     <thead>
         <tr class="table-info">
             <th scope="col">CAMPEONATO</th>
             <th scope="col">JUEGO</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
         </tr>
@@ -19,7 +21,9 @@
             <tr>
                 <td>{{campeonato.campeonatoNombre}}</td>
                 <td>{{campeonato.juego}}</td>
+                <td><a href="{{path('campeonato_info', {'id': campeonato.id})}}">Info.</a></td>
                 <td><a class="btn btn-lg btn-primary" type="submit" href="{{ path('campeonatos_edit', {'id': campeonato.id}) }}">Editar</a></td>
+                <td><a class="btn btn-lg btn-danger delete-campeonato" type="submit" href="{{ path('campeonatos_delete', {'id': campeonato.id}) }}">Borrar</a></td>
                 <td></td>
             </tr>
         {% endfor %}

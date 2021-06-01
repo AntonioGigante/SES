@@ -94,7 +94,7 @@ class CampeonatosController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('campeonatos_index');
+            return $this->redirectToRoute('misCampeonatos');
         }
 
         return $this->render('campeonatos/edit.html.twig', [
@@ -125,14 +125,13 @@ class CampeonatosController extends AbstractController
 
 
     /**
-     * @Route("/campeonatos/{id}", name="campeonatos_pruebas", methods={"GET","POST"})
+     * @Route("/campeonatos/{id}", name="campeonato_pruebas", methods={"GET","POST"})
      * IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function campeonatopruebas(Request $request, $id): Response
     {
-        $campeonato = new Campeonato;
-        $campeonato = $this->getDoctrine()->getRepository(Campeonato::class)->find($id);
         $prueba = new Prueba();
+        $campeonato = $this->getDoctrine()->getRepository(Campeonato::class)->find($id);
         $form = $this->createForm(PruebaType::class, $prueba);
 
         $form->handleRequest($request);
@@ -146,7 +145,7 @@ class CampeonatosController extends AbstractController
             return $this->redirectToRoute('home');
         }
         
-        return $this->redirectToRoute('campeonatos_index', ['prueba'=> $prueba, 'campeonato' => $campeonato, 
+        return $this->redirectToRoute('misCampeonatos', ['prueba'=> $prueba, 'campeonato' => $campeonato, 
         'form' => $form->createView()]);
     }
 }
