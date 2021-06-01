@@ -84,7 +84,7 @@ class EquipoController extends AbstractController
             //set foto del equipo "null" y director del equipo "usuario loggeado". 
             $equipo->setFoto('null', null);
             $equipo->setDirector($user);
-            //$user->setEquipo($teamsuer);
+            //$usermiembro->getEquipo($teamsuer);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($equipo);
             //$entityManager->persist($userequipo);
