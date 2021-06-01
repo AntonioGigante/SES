@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
+
 {% block body %}
+{%  block stylesheets %}
+{{encore_entry_link_tags('app')}}
+    <link rel="stylesheet" href="/build/app.css">
+{% endblock stylesheets %} 
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
