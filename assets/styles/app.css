@@ -6,10 +6,42 @@ body {
     width: 60%;
 }
 
+@media screen and(min-width: 575px){
+    #user_username.form-control, #user_email.form-control, #user_plainPassword_first.form-control,
+    #user_plainPassword_second.form-control{
+    width: 610%;
+    margin-left: 10px;
+    position: relative;
+    }
+}
+
+label{
+    margin-left: 10px;
+}
+
 #inputEmail, #inputPassword{
     width: 20%;
 }
 
 #campeonato_campeonato_nombre, #campeonato_juego{
     width: 30%;
+}
+
+.nav-item{
+    position: relative;
+    left: 600px;
+    padding-right: 5%;
+}
+
+.navbar-toggler{
+    position: relative;
+    margin-right: 5%;
+}
+
+@media screen and (max-width: 1151px) {
+    .nav-item{
+        position: relative;
+        left: 400px;
+        padding-right: 5%;
+    }
 }

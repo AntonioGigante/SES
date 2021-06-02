@@ -5,6 +5,7 @@ use App\Entity\Campeonato;
 use App\Entity\Participacion;
 use App\Entity\User;
 use App\Form\CampeonatoType;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;    
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -82,7 +83,7 @@ class MainController extends AbstractController{
               'SELECT IDENTITY(p.user), u.username FROM App\Entity\Participacion AS p JOIN App\Entity\User AS u
                WHERE p.user = u.id AND EXISTS 
               (SELECT o.id FROM App\Entity\Campeonato AS o WHERE o.id = :id AND o.id = p.campeonato)'
-          )->setParameter('id', $campeonato);
+          )->setParameters(array('id' => $campeonato));
           $participantes = $query->getResult();
 
           return $this->render('campeonatos/show.html.twig', [

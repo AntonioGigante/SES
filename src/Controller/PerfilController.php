@@ -102,7 +102,7 @@ class PerfilController extends AbstractController
     }  
     /**
      * @Route("/misCampeonatos", name="misCampeonatos", methods={"GET"})
-     *  IsGranted("IS_AUTENTICATED_FULLY")
+     * @IsGranted("IS_AUTHENTICATED_FULLY") 
      */  
     public function misCampeonatos(Request $request)
     {
