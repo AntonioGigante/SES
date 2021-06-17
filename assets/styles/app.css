@@ -6,17 +6,20 @@ body {
     width: 60%;
 }
 
-@media screen and(min-width: 575px){
-    #user_username.form-control, #user_email.form-control, #user_plainPassword_first.form-control,
-    #user_plainPassword_second.form-control{
-    width: 610%;
-    margin-left: 10px;
-    position: relative;
+@media screen{
+    #user_username.form-control, #user_email.form-control, 
+    #user_plainPassword_first.form-control, #user_plainPassword_second.form-control{
+        width: 300%;
     }
 }
 
+
 label{
     margin-left: 10px;
+}
+
+#form_Nombre.form-control{
+    width: 30%;
 }
 
 #inputEmail, #inputPassword{

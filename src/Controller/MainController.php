@@ -5,7 +5,7 @@ use App\Entity\Campeonato;
 use App\Entity\Participacion;
 use App\Entity\User;
 use App\Form\CampeonatoType;
-use Doctrine\ORM\Mapping\Id;
+use mysqli_result;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;    
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -112,6 +112,12 @@ class MainController extends AbstractController{
 
           $em = $this->getDoctrine()->getManager();
           $campeonatonombre = $em->getRepository(Campeonato::class)->find($id);
+
+          /*$query = $this->getDoctrine()->getManager()
+          ->createQuery(
+            'SELECT p.user, p.campeonato FROM App\Entity\Participacion'
+          );
+          $participacion = $query->getResult();*/          
 
           $participante = new Participacion();
           $participante->setUser($user);
