@@ -118,5 +118,24 @@ class PerfilController extends AbstractController
 
         return $this->render('perfil/misCampeonatos.html.twig', ['campeonatos' => $campeonato]);
     }
-   
+
+    /**
+     * @Route("/campeonatosApuntado", name="campeonatosApuntado", methods={"GET"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY)
+     */
+    public function campeonatosApuntado(Request $request)
+    {
+        $user = $this->getUser()->getUsername();
+        $participaciones = $this->getDoctrine()->getRepository(Campeonato::class)->findAll();
+        
+        $query = $this->getDoctrine()->getManager()
+        ->createQuery(
+            'SELECT p FROM App\Entity\Campeonato AS p JOIN App\Entity\Participacion AS u WHERE 
+            p.id = u.campeonato AND EXISTS
+            (SELECT o.username FROM App\Entity\User AS  o WHERE u.user = o.id AND o.username = :user)'
+        )->setParameter('user', $user);
+        $participaciones = $query->getResult();
+
+        return $this->render('perfil/misCampeonatos.html.twig', ['participaciones' => $participaciones])
+    } 
 }
