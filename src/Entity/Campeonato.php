@@ -6,6 +6,8 @@ namespace App\Entity;
 use App\Repository\CampeonatoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints\Expression;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,11 +52,13 @@ class Campeonato
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThanOrEqual("today", message="la fecha minima de inicion de campeonato tiene que ser hoy")
      */
     private $fechainicio;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\Expression("this.getFechafin() > this.getFechainicio()", message="la fecha de fin no puede ser anterior o igual a la fecha de inico")
      */
     private $fechafin;
 

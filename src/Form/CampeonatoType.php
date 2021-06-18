@@ -19,7 +19,7 @@ class CampeonatoType extends AbstractType
             //->add('creador_campeonato', TextType::class, ['help' => 'nombre del creador del campeonato'])
             ->add('descripcion', TextType::class)
             ->add('juego', TextType::class)
-            ->add('fecha_inicio', DateType::class, ['widget' => 'choice'])
+            ->add('fecha_inicio', DateType::class, ['widget' => 'choice'])  
             ->add('fecha_fin', DateType::class, ['widget'=>'choice'])
             ->add('crearcampeonato', SubmitType::class, array('label'=>'crear campeonato'))
         ;
