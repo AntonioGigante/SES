@@ -32,4 +32,35 @@
     {% endif %}
 </table>
 
+<h4>Campeonatos Inscrito</h4>
+
+<table id="parcicipaciones" class="table table-hover">
+    <thead>
+        <tr class="table-info">
+            <th scope="col">CAMPEONATO</th>
+            <th scope="col">JUEGO</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    {% if participaciones %}
+        {% if campeonatos %}
+            {% for campeonato in participaciones %}
+                <tr>
+                    <td>{{campeonato.campeonatoNombre}}</td>
+                    <td>{{campeonato.juego}}</td>
+                    <td><a href="{{path('campeonato_info', {'id': campeonato.id})}}">Info.</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        <p>No estas inscrito ningún campeonato por ahora</p>
+    {% endif %}
+</table>
+
 {% endblock %}
