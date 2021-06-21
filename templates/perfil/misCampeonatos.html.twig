@@ -18,7 +18,7 @@
 
     {% if campeonatos %}
         {% for campeonato in campeonatos %}
-            <tr>
+            <tr class="table-primary">
                 <td>{{campeonato.campeonatoNombre}}</td>
                 <td>{{campeonato.juego}}</td>
                 <td><a href="{{path('campeonato_info', {'id': campeonato.id})}}">Info.</a></td>
